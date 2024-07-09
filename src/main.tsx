@@ -8,6 +8,9 @@ import { Login } from "./pages/Login.tsx";
 import { Signup } from "./pages/Signup.tsx";
 import { AuthLayout } from "./pages/AuthLayout.tsx";
 import { UserContextProvider } from "./context/UserContext.tsx";
+import { PasswordRecovery } from "./pages/PasswordRecovery.tsx";
+import { ResetPassword } from "./components/ResetPassword.tsx";
+import { VerifyUser } from "./components/VerifyUser.tsx";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +40,22 @@ const router = createBrowserRouter([
             <Signup />
           </AuthLayout>
         ),
+      },
+      {
+        path: "/reset-password",
+        element: <ResetPassword />,
+      },
+      {
+        path: "/recoverPassword",
+        element: (
+          <AuthLayout authentication={true}>
+            <PasswordRecovery />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/verfiy-user",
+        element: <VerifyUser />,
       },
     ],
   },

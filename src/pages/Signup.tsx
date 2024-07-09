@@ -1,19 +1,15 @@
 import { useState } from "react";
 import { authService } from "../appwrite/Auth";
-import { useAuth } from "../context/UserContext";
 import { Link } from "react-router-dom";
 
 export function Signup() {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const { dispatch } = useAuth();
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    authService.Signup(name.trim(), email.trim(), password.trim()).then(() => {
-      dispatch({ type: "LOGIN", payload: name.trim() });
-    });
+    await authService.Signup(name.trim(), email.trim(), password.trim());
   }
   return (
     <div className="w-1/2 mx-auto text-center">
